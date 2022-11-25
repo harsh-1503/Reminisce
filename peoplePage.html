@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="peoplePage.css" />
+    <script src="peoplePage.js"></script>
+    <title>People Page</title>
+  </head>
+  <body>
+    <div class="whole">
+      <div class="first">
+        <div class="people">
+          <div class="peopleText">Add People</div>
+          <div class="inputText">
+            <span class="name1">Name:</span
+            ><input type="text" id="name" placeholder="Enter Name"required /><span class="contact1">
+              Contact:</span
+            ><input type="number" id="contact" placeholder="Contact Number"/>
+          </div>
+          <button class="submit" id="submit1">ADD</button>
+        </div>
+        <div class="listPeople">
+          <!-- <div class="person"> 
+          <div class="valuePerson">
+            Name: <input type="text" class="text" id="storeName">
+            Contact: <input type="number" class="text" id="storeContact">
+            Items:<input type="text" class="text" id="Items">
+          </div>-->
+          <!-- </div>  -->
+        </div>
+      </div>
+      <div class="middle" id="items">
+        <div class="middle1">
+          <div class="catText">Add Items</div>
+          <div class="inpItems">
+            <input type="text" placeholder="Item Name" id="inpItem" required />
+          </div>
+          <button class="btn2" value="Add Item" id="addItemBtn">
+            Add Item
+          </button>
+        </div>
+        <div class="middle2">
+          <p class="ite7">Item List</p>
+          <div class="another">
+            <!-- <div class="itemex">
+              <!-- <p class="pure">Item1</p> -->
+            <!-- </div> --> 
+          </div>
+        </div>
+      </div>
+      <div class="upper">
+        <div class="upText">Assign Items</div>
+        <div class="s1s2">
+        <div class="select1">
+          <label for="personNam">Name:</label>
+
+          <select name="personNam" id="perNames">
+            <option value="Select Name">Select Name</option>
+            <!-- <option value="Saab"></option>
+           <option value="opel"></option>
+          <option value="audi">Audi</option>  -->
+          </select>
+        </div>
+        <div class="select2">
+          <label for="itemNam">Item Name:</label>
+          <select name="itemNam" id="itemNames">
+            <option value="selectItem">Select Item</option>
+            <!-- <option value="saab">Saab</option> -->
+            <!-- <option value="opel"></option>
+          <option value="audi">Audi</option> -->
+          </select>
+        </div>
+      </div>
+        <button class="btn2" id="assign">Assign</button>
+      </div>
+      <div class="upperBelow">
+        <!-- <div class="contentBox">
+          <p class="nam">Name:</p>
+          <p class="iteNam">Item:</p>
+        </div> -->
+      </div>
+    </div>
+  </body>
+</html>
