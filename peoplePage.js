@@ -1,104 +1,160 @@
-// alert('hello');
-// const
-
-const arr = [];
+// localStorage.clear();
+let newInfo = JSON.parse(localStorage.getItem("currInfo")) || [];
+let newItemsList = JSON.parse(localStorage.getItem("itemsList")) || [];
+let newAss = JSON.parse(localStorage.getItem("assIte")) || [];
 window.addEventListener("load", () => {
-  const listPeople = document.querySelector(".listPeople");
-  const input1 = document.querySelector("#name");
-  const input2 = document.querySelector("#contact");
+  let listPeople = document.querySelector(".listPeople");
+  let input1 = document.querySelector("#name");
+  let input2 = document.querySelector("#contact");
 
-  const sub = document.querySelector("#submit1");
-  const na = "Name: ";
-  const co = "Contact: ";
-  sub.addEventListener("click", (e) => {
-    const task1 = na + input1.value;
-    const task2 = co + input2.value;
-    if (task1 == "Name: " || task2 == "Contact: ") {
-      alert("Please fill all the details");
-    } else {
-      const p = input1.value,q = input2.value;
-      arr.push({p,q});
-      // localStorage.setItem("name",p);
-      // localStorage.setItem("contact",q);
-      console.log(arr);
-      const personInp = document.createElement("div");
+  const displayHarsh = () => {
+    while (listPeople.firstChild) {
+      listPeople.removeChild(listPeople.firstChild);
+    }
+
+    for (var i = 0; i < newInfo.length; i++) {
+      let personInp = document.createElement("div");
       personInp.classList.add("valuePerson");
-
-      const nameP = document.createElement("p");
+      let nameP = document.createElement("p");
       nameP.classList.add("pInsert");
-      nameP.innerHTML = task1;
+      nameP.innerHTML = newInfo[i]["nameMR"];
       personInp.appendChild(nameP);
-      const contactP = document.createElement("p");
+      let contactP = document.createElement("p");
       contactP.classList.add("nInsert");
-      contactP.innerHTML = task2;
+      contactP.innerHTML = newInfo[i]["contactMR"];
       personInp.appendChild(contactP);
-
-      const itemP = document.createElement("p");
-      // itemP.type='text';
-      // itemP.setAttribute('readonly','readonly');
-      personInp.appendChild(itemP);
       listPeople.appendChild(personInp);
       const perNam = document.querySelector("#perNames");
       const opt = document.createElement("option");
-      opt.innerHTML = task1;
-      opt.value = task1;
+      opt.innerHTML = newInfo[i]["nameMR"];
+      opt.value = newInfo[i]["nameMR"];
       perNam.appendChild(opt);
+    }
+  };
+  displayHarsh();
+  let sub = document.querySelector("#submit1");
+  let na = "Name: ";
+  let co = "Contact: ";
+  sub.addEventListener("click", (e) => {
+    let currInfo = JSON.parse(localStorage.getItem("currInfo"));
+    if (currInfo == null) {
+      currInfo = [];
+    }
+    let task1 = na + input1.value;
+    let task2 = co + input2.value;
+    if (task1 == "Name: " || task2 == "Contact: ") {
+      alert("Please fill all the details");
+    } else {
+      let nameMR = input1.value;
+      let contactMR = input2.value;
+
+      let Info = {
+        nameMR: nameMR,
+        contactMR: contactMR,
+      };
+      currInfo.push(Info);
+
+      localStorage.setItem("currInfo", JSON.stringify(currInfo));
+
+      window.location.reload();
       input1.value = "";
       input2.value = "";
     }
   });
 
-  const assign = document.querySelector("#assign");
+  let assign = document.querySelector("#assign");
+  let upperBelow = document.querySelector(".upperBelow");
+
+  const displayAssignItems = () => {
+    while (upperBelow.firstChild) {
+      upperBelow.removeChild(upperBelow.firstChild);
+    }
+
+    for (var i = 0; i < newAss.length; i++) {
+      let contentBox = document.createElement("div");
+      contentBox.classList.add("contentBox");
+
+      let nam = document.createElement("p");
+      nam.classList.add("nam");
+      nam.innerHTML = newAss[i]["nameAs"];
+      nam.value = newAss[i]["nameAs"];
+      contentBox.appendChild(nam);
+      let ite = document.createElement("p");
+      ite.classList.add("iteNam");
+      ite.innerHTML = newAss[i]["itemAs"];
+      ite.value = newAss[i]["itemAs"];
+      contentBox.appendChild(ite);
+      upperBelow.appendChild(contentBox);
+    }
+  };
+  displayAssignItems();
 
   assign.addEventListener("click", (e) => {
-    const upperBelow = document.querySelector(".upperBelow");
-    // alert('bhosdya');
-    const optValue = document.querySelector("#perNames");
-    const iteName = document.querySelector("#itemNames");
+    let optValue = document.querySelector("#perNames");
 
-    const puk1 = optValue.value;
-    const puk2 = iteName.value;
+    let iteName = document.querySelector("#itemNames");
+
+    let puk1 = optValue.value;
+    let puk2 = iteName.value;
+    console.log(puk1, puk2);
     if (puk1 == "Select Name" || puk2 == "Select Item") {
       alert("Select Appropriate options");
     } else {
-      const contentBox = document.createElement("div");
-      contentBox.classList.add("contentBox");
+      let Ass = JSON.parse(localStorage.getItem("assIte")) || [];
+      let AssignItem = {
+        nameAs: puk1,
+        itemAs: puk2,
+      };
 
-      const nam = document.createElement("p");
-      nam.classList.add("nam");
-      nam.innerHTML = puk1;
-      nam.value = puk1;
-      contentBox.appendChild(nam);
-      const ite = document.createElement("p");
-      ite.classList.add("iteNam");
-      ite.innerHTML = puk2;
-      ite.value = puk2;
-      contentBox.appendChild(ite);
-
-      upperBelow.appendChild(contentBox);
+      
+      Ass.push(AssignItem);
+      localStorage.setItem("assIte", JSON.stringify(Ass));
+      window.location.reload();
     }
   });
 
-  const addItem = document.querySelector("#addItemBtn");
-  const middle2 = document.querySelector(".another");
-  const itemNames = document.querySelector("#itemNames");
+  let addItem = document.querySelector("#addItemBtn");
+  let middle2 = document.querySelector(".another");
+  let itemNames = document.querySelector("#itemNames");
+
+  const displayItem = () => {
+    while (middle2.firstChild) {
+      middle2.removeChild(middle2.firstChild);
+    }
+    console.log(newItemsList.length);
+    for (var i = 0; i < newItemsList.length; i++) {
+      let optNe = document.createElement("option");
+      optNe.value = newItemsList[i]["itemMR"];
+      optNe.innerHTML = newItemsList[i]["itemMR"];
+      itemNames.appendChild(optNe);
+      let itemex = document.createElement("div");
+      itemex.classList.add("itemex");
+      middle2.appendChild(itemex);
+      let pure = document.createElement("p");
+      pure.classList.add("pure");
+      pure.innerHTML = newItemsList[i]["itemMR"];
+      itemex.appendChild(pure);
+      inpItem.value = "";
+    }
+  };
+  displayItem();
+
   addItem.addEventListener("click", (e) => {
-    const inpItem = document.querySelector("#inpItem");
+    let itemsList = JSON.parse(localStorage.getItem("itemsList"));
+    if (itemsList == null) {
+      itemsList = [];
+    }
+    let inpItem = document.querySelector("#inpItem");
     if (!inpItem.value) {
       alert("Please fill the details!");
     } else {
-      const ta = inpItem.value;
-      const optNe = document.createElement("option");
-      optNe.value = ta;
-      optNe.innerHTML = ta;
-      itemNames.appendChild(optNe);
-      const itemex = document.createElement("div");
-      itemex.classList.add("itemex");
-      middle2.appendChild(itemex);
-      const pure = document.createElement("p");
-      pure.classList.add("pure");
-      pure.innerHTML = ta;
-      itemex.appendChild(pure);
+      let ta = inpItem.value;
+      let z = {
+        itemMR: ta,
+      };
+      itemsList.push(z);
+      localStorage.setItem("itemsList", JSON.stringify(itemsList));
+      window.location.reload();
       inpItem.value = "";
     }
   });
