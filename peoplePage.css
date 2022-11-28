@@ -1,42 +1,53 @@
 body {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+    scroll-behavior: smooth;
 }
-.Title{
+
+.Title {
     font-size: 59px;
     margin: 0px 32px;
     font-family: 'Dancing Script', cursive;
     color: white;
 }
-.earlier{
+
+.earlier {
     color: white;
     width: 44%;
     margin: 39px auto;
     text-align: center;
 }
-.c1{
+
+.c1 {
     font-size: 47px;
 }
+
 header::before {
     content: "";
     background: url('campaign-creators-e6n7uoEnYbA-unsplash.jpg') no-repeat center center/ cover;
     opacity: 0.15;
     position: absolute;
-    background-position-y: -141.5px ;
+    background-position-y: -141.5px;
     top: 0;
     left: 0;
     width: 100%;
     height: 245px;
+    max-width: 100%;
     z-index: -1;
 }
-.first{
+
+.first {
     display: flex;
     flex-direction: row;
 }
-.navBar{
+
+.navBar {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
 }
+
 .navItems {
     display: flex;
     font-size: 20px;
@@ -47,6 +58,11 @@ header::before {
 .navItems li {
     list-style: none;
     margin: 0px 14px;
+    transition: font-size 1s;
+}
+
+.navItems li:hover {
+    font-size: 25px;
 }
 
 .people {
@@ -100,7 +116,13 @@ header::before {
     align-self: center;
     margin: 12px;
     /* background-color: #737e7e; */
+    transition: all 0.5s;
     border-radius: 10px;
+}
+
+#submit1:hover {
+    background-color: #869292;
+    font-size: 15px;
 }
 
 .Name {
@@ -117,11 +139,13 @@ header::before {
     flex-direction: column;
     width: 50%;
 }
-.pInsert{
+
+.pInsert {
     width: 60%;
     text-align: center;
 }
-.nInsert{
+
+.nInsert {
     width: 40%;
 }
 
@@ -161,6 +185,10 @@ header::before {
 
 }
 
+.middle {
+    background-color: #524b4b5c;
+}
+
 .middle1 {
     display: flex;
     flex-direction: column;
@@ -185,6 +213,12 @@ header::before {
     margin: 12px;
     /* background-color: #737e7e; */
     border-radius: 10px;
+    transition: all 1s;
+}
+
+.btn2:hover {
+    background-color: #869292;
+    font-size: 15px;
 }
 
 #inpItem {
@@ -209,13 +243,14 @@ header::before {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
 }
 
 .pure {
     /* background-color: #869292; */
     height: 33px;
     /* width: 119px; */
-    border:2px solid  white;
+    border: 2px solid white;
     color: #fff5f5;
     font-size: 26px;
     text-align: center;
@@ -266,15 +301,23 @@ header::before {
     width: 60%;
     margin: auto;
     justify-content: center;
+    align-items: center;
     color: white;
 }
 
 .contentBox {
     width: 48%;
+    margin: 5px auto;
     border: 2px solid rgb(236, 231, 231);
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
 }
-.footText{
+
+.footText {
     color: white;
     display: flex;
     flex-direction: column;
@@ -282,7 +325,8 @@ header::before {
     justify-content: center;
     /* background-color: #818889; */
 }
-.foot{
+
+.foot {
     width: 100%;
     height: 100px;
     font-size: 20px;
@@ -292,55 +336,74 @@ header::before {
     align-items: center;
 }
 
-@media only screen and (max-width:1157px){
-    .valuePerson{
+@media only screen and (max-width:1157px) {
+    .valuePerson {
         width: 93%;
     }
 }
 
-@media only screen and (max-width: 1174px){
+@media only screen and (max-width: 1174px) {
     header::before {
         content: "";
         background: url('campaign-creators-e6n7uoEnYbA-unsplash.jpg') no-repeat center center/ cover;
-        
+        width: 100%;
         height: 312px;
-        
+
     }
 }
-@media only screen and (max-width: 920px){
-    .first{
+
+@media only screen and (max-width: 920px) {
+    .first {
         display: flex;
         flex-direction: column;
     }
 }
-@media only screen and (max-width:762px){
-    .navBar{
+
+@media only screen and (max-width:762px) {
+    .navBar {
         flex-direction: column;
         align-items: center;
     }
-    .inputText{
+
+    .navItems {
+        padding-left: 0px;
+        display: flex;
+        font-size: 20px;
+        color: white;
+        text-shadow: 4px 4px black;
+        margin: auto;
+    }
+
+    .inputText {
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
+
     header::before {
         content: "";
         background: url('campaign-creators-e6n7uoEnYbA-unsplash.jpg') no-repeat center center/ cover;
-        
-        height: 392px;
-        
+        width: 100%;
+        height: 327px;
+
     }
-    .earlier{
+
+    .earlier {
         width: 70%;
     }
-    
+
+    .contentBox {
+        width: 86%;
+    }
+
 }
-@media only screen and (max-width:420px){
+
+@media only screen and (max-width:420px) {
     header::before {
         content: "";
         background: url('campaign-creators-e6n7uoEnYbA-unsplash.jpg') no-repeat center center/ cover;
-        width: 430px;
-        height: 392px;
-        
+        /* width: 430px; */
+        height: 340px;
+
     }
 }

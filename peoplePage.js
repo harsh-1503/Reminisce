@@ -1,11 +1,13 @@
 // localStorage.clear();
+// console.log(names);
 let newInfo = JSON.parse(localStorage.getItem("currInfo")) || [];
 let newItemsList = JSON.parse(localStorage.getItem("itemsList")) || [];
 let newAss = JSON.parse(localStorage.getItem("assIte")) || [];
 window.addEventListener("load", () => {
+  let names = [];
   let listPeople = document.querySelector(".listPeople");
-  let input1 = document.querySelector("#name");
-  let input2 = document.querySelector("#contact");
+  // let input1 = document.querySelector("#name");
+  // let input2 = document.querySelector("#contact");
 
   const displayHarsh = () => {
     while (listPeople.firstChild) {
@@ -36,9 +38,21 @@ window.addEventListener("load", () => {
   let na = "Name: ";
   let co = "Contact: ";
   sub.addEventListener("click", (e) => {
+    let input1 = document.querySelector("#name");
+    let input2 = document.querySelector("#contact");
     let currInfo = JSON.parse(localStorage.getItem("currInfo"));
     if (currInfo == null) {
       currInfo = [];
+    }
+    if (names.includes(input1)){
+      alert('Name already exists');
+      input1.value = "";
+      return; 
+    }
+    if(input2.value.length!=10){
+      alert('Invalid Contact Number');
+      input2.value = "";
+      return;
     }
     let task1 = na + input1.value;
     let task2 = co + input2.value;
@@ -47,7 +61,8 @@ window.addEventListener("load", () => {
     } else {
       let nameMR = input1.value;
       let contactMR = input2.value;
-
+      names.push(nameMR);
+      console.log(names);
       let Info = {
         nameMR: nameMR,
         contactMR: contactMR,
@@ -97,7 +112,7 @@ window.addEventListener("load", () => {
     let puk1 = optValue.value;
     let puk2 = iteName.value;
     console.log(puk1, puk2);
-    if (puk1 == "Select Name" || puk2 == "Select Item") {
+    if (puk1 == "Select Name" || puk2 == "selectItem") {
       alert("Select Appropriate options");
     } else {
       let Ass = JSON.parse(localStorage.getItem("assIte")) || [];
@@ -121,6 +136,7 @@ window.addEventListener("load", () => {
     while (middle2.firstChild) {
       middle2.removeChild(middle2.firstChild);
     }
+    
     console.log(newItemsList.length);
     for (var i = 0; i < newItemsList.length; i++) {
       let optNe = document.createElement("option");
