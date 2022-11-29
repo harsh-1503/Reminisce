@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
   // let input1 = document.querySelector("#name");
   // let input2 = document.querySelector("#contact");
 
-  const displayHarsh = () => {
+  const displayPeople = () => {
     while (listPeople.firstChild) {
       listPeople.removeChild(listPeople.firstChild);
     }
@@ -32,7 +32,26 @@ window.addEventListener("load", () => {
         itemP.innerHTML = newInfo[i].itemMRK;
         personInp.appendChild(itemP);
       }
+      let deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('delete');
+      deleteBtn.innerHTML = "Delete";
       
+      personInp.appendChild(deleteBtn);
+      deleteBtn.onclick = (function(i) {
+        return function() {
+
+            if (confirm("Do you want to delete this data ?")) {
+                newInfo.splice(i, 1) 
+                window.location.reload();
+                localStorage.setItem("currInfo", JSON.stringify(newInfo)); 
+            }                        
+        }
+    })(i);
+      // deleteBtn.addEventListener('click',(e)=>{
+      //   newInfo.splice(,1);
+      //   // listPeople.removeChild(personInp);
+      //   localStorage.setItem("currInfo",JSON.stringify(newInfo));
+      // })
       const perNam = document.querySelector("#perNames");
       const opt = document.createElement("option");
       opt.innerHTML = newInfo[i]["nameMR"];
@@ -40,7 +59,10 @@ window.addEventListener("load", () => {
       perNam.appendChild(opt);
     }
   };
-  displayHarsh();
+  displayPeople();
+
+  // let delFunc = document.querySelector('.deleteBtn');
+   
   let sub = document.querySelector("#submit1");
   let na = "Name: ";
   let co = "Contact: ";
@@ -73,7 +95,7 @@ window.addEventListener("load", () => {
       let Info = {
         nameMR: nameMR,
         contactMR: contactMR,
-        itemMRK : ["0" ],
+        itemMRK : [],
       };
       currInfo.push(Info);
 
@@ -107,6 +129,43 @@ window.addEventListener("load", () => {
       ite.innerHTML = newAss[i]["itemAs"];
       ite.value = newAss[i]["itemAs"];
       contentBox.appendChild(ite);
+      let delBtn2 = document.createElement('button');
+      delBtn2.classList.add('delBtn2');
+      delBtn2.innerHTML = "Delete";
+      contentBox.appendChild(delBtn2);
+      delBtn2.onclick = (function(i) {
+        return function() {
+          var flag = 0;
+            if (confirm("Do you want to delete this data ?")) {
+                let itemls = JSON.parse(localStorage.getItem("itemsList"));
+                let newInfo3 = JSON.parse(localStorage.getItem("currInfo"));
+                let anoIte = {
+                  itemMR : newAss[i].itemAs,
+                }
+                itemls.push(anoIte);
+                for(var e = 0;e < newInfo3.length;e++){
+                  if(newInfo3[e].nameMR == newAss[i].nameAs){
+                    console.log('harshppppp');
+                    for(var f = 0;f < newInfo3[e].itemMRK.length;f++){
+                      if(newInfo3[e].itemMRK[f] == newAss[i].itemAs){
+                        newInfo3[e].itemMRK.splice(f,1);
+                        flag = 1;
+                        break;
+                      }
+                    }
+                    if(flag == 1){
+                      break;
+                    }
+                  }
+                }
+                newAss.splice(i, 1) 
+                window.location.reload();
+                localStorage.setItem("currInfo",JSON.stringify(newInfo3));
+                localStorage.setItem("itemsList",JSON.stringify(itemls));
+                localStorage.setItem("assIte", JSON.stringify(newAss)); 
+            }                        
+        }
+    })(i);
       upperBelow.appendChild(contentBox);
     }
   };
@@ -124,6 +183,7 @@ window.addEventListener("load", () => {
       alert("Select Appropriate options");
     } else {
       let newInfo2 = JSON.parse(localStorage.getItem("currInfo")) || [];
+      let newItem2 = JSON.parse(localStorage.getItem("itemsList")) || [];
 
       let Ass = JSON.parse(localStorage.getItem("assIte")) || [];
       let AssignItem = {
@@ -132,6 +192,8 @@ window.addEventListener("load", () => {
       };
       // let varAdd = newInfo.find(varAdd=>varAdd.nameMR==puk1);
       // varAdd["itemMRK"] = puk2;
+      
+
       Ass.push(AssignItem);
       localStorage.setItem("assIte",JSON.stringify(Ass));
       window.location.reload();
@@ -142,16 +204,25 @@ window.addEventListener("load", () => {
       
       for(var k = 0;k < newInfo2.length;k++){
         if(newInfo2[k].nameMR == String(puk1)){
-          console.log('harsh');
+          console.log('harshz');
           idx = k;
           break;
         }
       }
       window.location.reload();
       newInfo2[idx].itemMRK.push(puk2);
-      console.log(newInfo2[idx]); 
+      // console.log(newInfo2[idx]); 
       localStorage.setItem("currInfo", JSON.stringify(newInfo2));
-     
+      console.log(newItem2.length)
+      for(var r = 0;r < newItem2.length;r++){
+        if(newItem2[r].itemMR == String(puk2)){
+          // console.log('harshzzz');
+          newItem2.splice(r,1);
+          console.log(newItem2);
+          break;
+        }
+      }
+      localStorage.setItem("itemsList",JSON.stringify(newItem2));
     }
 
   });
@@ -199,6 +270,7 @@ window.addEventListener("load", () => {
       itemsList.push(z);
       localStorage.setItem("itemsList", JSON.stringify(itemsList));
       window.location.reload();
+      inpItem.focus();
       inpItem.value = "";
     }
   });

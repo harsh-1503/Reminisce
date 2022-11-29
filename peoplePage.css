@@ -158,7 +158,7 @@ header::before {
 
 .valuePerson {
     color: white;
-    /* position: relative; */
+
     border-radius: 10px;
     display: flex;
     width: 68%;
@@ -166,8 +166,25 @@ header::before {
     height: 42px;
     /* justify-content: space-evenly; */
     flex-direction: row;
+    flex-wrap: wrap;
     /* justify-content: center; */
     align-items: center;
+    justify-content: center;
+}
+
+.valuePerson .delete {
+    display: none;
+    background-color: rgb(194, 33, 33);
+    border-radius: 10px;
+    color: white;
+    transition: all 2s;
+    transition-timing-function: ease-in;
+    z-index: 1;
+}
+
+.valuePerson:hover .delete {
+    z-index: 3;
+    display: block;
 }
 
 .pInsert,
@@ -318,6 +335,25 @@ header::before {
 
 }
 
+.contentBox:hover .delBtn2 {
+    display: block;
+}
+
+.nam,
+.iteNam {
+    width: 33%;
+    padding: 0px 0px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.delBtn2 {
+    display: none;
+    background-color: rgb(194, 33, 33);
+    border-radius: 10px;
+}
+
 .footText {
     color: white;
     display: flex;
@@ -403,8 +439,6 @@ header::before {
     header::before {
         content: "";
         background: url('campaign-creators-e6n7uoEnYbA-unsplash.jpg') no-repeat center center/ cover;
-        /* width: 430px; */
         height: 340px;
-
     }
 }
