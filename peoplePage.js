@@ -26,6 +26,13 @@ window.addEventListener("load", () => {
       contactP.innerHTML = newInfo[i]["contactMR"];
       personInp.appendChild(contactP);
       listPeople.appendChild(personInp);
+      if(newInfo[i]["itemMRK"]!= ""){
+        let itemP = document.createElement('div');
+        itemP.classList.add('itemsss');
+        itemP.innerHTML = newInfo[i].itemMRK;
+        personInp.appendChild(itemP);
+      }
+      
       const perNam = document.querySelector("#perNames");
       const opt = document.createElement("option");
       opt.innerHTML = newInfo[i]["nameMR"];
@@ -66,6 +73,7 @@ window.addEventListener("load", () => {
       let Info = {
         nameMR: nameMR,
         contactMR: contactMR,
+        itemMRK : ["0" ],
       };
       currInfo.push(Info);
 
@@ -111,23 +119,43 @@ window.addEventListener("load", () => {
 
     let puk1 = optValue.value;
     let puk2 = iteName.value;
-    console.log(puk1, puk2);
+    // console.log(puk1, puk2);
     if (puk1 == "Select Name" || puk2 == "selectItem") {
       alert("Select Appropriate options");
     } else {
+      let newInfo2 = JSON.parse(localStorage.getItem("currInfo")) || [];
+
       let Ass = JSON.parse(localStorage.getItem("assIte")) || [];
       let AssignItem = {
         nameAs: puk1,
         itemAs: puk2,
       };
-
-      
+      // let varAdd = newInfo.find(varAdd=>varAdd.nameMR==puk1);
+      // varAdd["itemMRK"] = puk2;
       Ass.push(AssignItem);
-      localStorage.setItem("assIte", JSON.stringify(Ass));
+      localStorage.setItem("assIte",JSON.stringify(Ass));
       window.location.reload();
+      // let idx;
+      // console.log(idx);
+      // console.log(newInfo2[idx]);
+      // console.log(newInfo2.length);
+      
+      for(var k = 0;k < newInfo2.length;k++){
+        if(newInfo2[k].nameMR == String(puk1)){
+          console.log('harsh');
+          idx = k;
+          break;
+        }
+      }
+      window.location.reload();
+      newInfo2[idx].itemMRK.push(puk2);
+      console.log(newInfo2[idx]); 
+      localStorage.setItem("currInfo", JSON.stringify(newInfo2));
+     
     }
-  });
 
+  });
+ 
   let addItem = document.querySelector("#addItemBtn");
   let middle2 = document.querySelector(".another");
   let itemNames = document.querySelector("#itemNames");
