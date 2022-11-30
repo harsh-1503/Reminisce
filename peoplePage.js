@@ -6,8 +6,7 @@ let newAss = JSON.parse(localStorage.getItem("assIte")) || [];
 window.addEventListener("load", () => {
   let names = [];
   let listPeople = document.querySelector(".listPeople");
-  // let input1 = document.querySelector("#name");
-  // let input2 = document.querySelector("#contact");
+  
 
   const displayPeople = () => {
     while (listPeople.firstChild) {
@@ -145,7 +144,7 @@ window.addEventListener("load", () => {
                 itemls.push(anoIte);
                 for(var e = 0;e < newInfo3.length;e++){
                   if(newInfo3[e].nameMR == newAss[i].nameAs){
-                    console.log('harshppppp');
+                    // console.log('harshppppp');
                     for(var f = 0;f < newInfo3[e].itemMRK.length;f++){
                       if(newInfo3[e].itemMRK[f] == newAss[i].itemAs){
                         newInfo3[e].itemMRK.splice(f,1);
@@ -190,17 +189,11 @@ window.addEventListener("load", () => {
         nameAs: puk1,
         itemAs: puk2,
       };
-      // let varAdd = newInfo.find(varAdd=>varAdd.nameMR==puk1);
-      // varAdd["itemMRK"] = puk2;
       
 
       Ass.push(AssignItem);
       localStorage.setItem("assIte",JSON.stringify(Ass));
       window.location.reload();
-      // let idx;
-      // console.log(idx);
-      // console.log(newInfo2[idx]);
-      // console.log(newInfo2.length);
       
       for(var k = 0;k < newInfo2.length;k++){
         if(newInfo2[k].nameMR == String(puk1)){
@@ -211,12 +204,12 @@ window.addEventListener("load", () => {
       }
       window.location.reload();
       newInfo2[idx].itemMRK.push(puk2);
-      // console.log(newInfo2[idx]); 
+      
       localStorage.setItem("currInfo", JSON.stringify(newInfo2));
       console.log(newItem2.length)
       for(var r = 0;r < newItem2.length;r++){
         if(newItem2[r].itemMR == String(puk2)){
-          // console.log('harshzzz');
+          
           newItem2.splice(r,1);
           console.log(newItem2);
           break;
