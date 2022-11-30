@@ -72,11 +72,14 @@ window.addEventListener("load", () => {
     if (currInfo == null) {
       currInfo = [];
     }
-    if (names.includes(input1)){
-      alert('Name already exists');
-      input1.value = "";
-      return; 
+    console.log(currInfo.length);
+    for(var y = 0;y < currInfo.length;y++){
+      if(input1.value == currInfo[y].nameMR){
+        alert('Name already exists');
+        return ;
+      }
     }
+    
     if(input2.value.length!=10){
       alert('Invalid Contact Number');
       input2.value = "";
@@ -91,6 +94,7 @@ window.addEventListener("load", () => {
       let contactMR = input2.value;
       names.push(nameMR);
       console.log(names);
+      
       let Info = {
         nameMR: nameMR,
         contactMR: contactMR,
